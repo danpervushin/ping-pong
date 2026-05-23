@@ -30,13 +30,18 @@ class Player(GameSprite):
         if keys[K_d] and self.rect.y < 500 - self.rect.height - 5:
             self.rect.y += self.speed
 
+# class Tenis_ball(GameSprite):
+#     l_or_r = randint(1,2)
+#     if l_or_r == 1:
+#         self.rect.y -= self.speed
+
 
 
 window = display.set_mode((700, 500))
 display.set_caption('Пинг-понг')
 rаcketl = Player('racket.png',  175 , 30 , 5,(30, 150))
 rаcketr = Player('racket.png',  175 , 640, 5,(30, 150))
-
+tenis_ball = Player('tenis_ball.png',  220 , 310, 5,(50, 50))
 clock = time.Clock()
 FPS = 60
 run = True
@@ -53,6 +58,7 @@ while run:
             run = False
     window.fill((200, 255, 255))
     if not finish:
+        tenis_ball.reset()
         rаcketl.reset()
         rаcketr.reset()
         rаcketl.update_l()
