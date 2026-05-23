@@ -12,15 +12,24 @@ class GameSprite(sprite.Sprite):
         self.rect.x = player_x
     def reset(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
+
+
 class Player(GameSprite):
-    def update(self):
+    def update_l(self):
         keys = key.get_pressed()
-        if keys[K_d] and self.rect.x < 700 - self.rect.width - 5:
-            self.rect.x += self.speed
-        if keys[K_a] and self.rect.x > 5:
-            self.rect.x -= self.speed
-    def fire(self):
-        pass
+        if keys[K_w] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys[K_s] and self.rect.y < 500:
+            self.rect.y += self.speed
+
+
+    def update_r(self):
+        keys = key.get_pressed()
+        if keys[K_e] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys[K_d] and self.rect.y < 500:
+            self.rect.y += self.speed
+
 
 
 window = display.set_mode((700, 500))
