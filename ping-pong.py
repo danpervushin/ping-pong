@@ -19,7 +19,7 @@ class Player(GameSprite):
         keys = key.get_pressed()
         if keys[K_w] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if keys[K_s] and self.rect.y < 500:
+        if keys[K_s] and self.rect.y < 500  - self.rect.height - 5:
             self.rect.y += self.speed
 
 
@@ -27,15 +27,15 @@ class Player(GameSprite):
         keys = key.get_pressed()
         if keys[K_e] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if keys[K_d] and self.rect.y < 500:
+        if keys[K_d] and self.rect.y < 500 - self.rect.height - 5:
             self.rect.y += self.speed
 
 
 
 window = display.set_mode((700, 500))
 display.set_caption('Пинг-понг')
-rаcket = Player('racket.png',  500 - 80 - 5,700 // 2, 5,(60, 80))
-
+rаcketl = Player('racket.png',  175 , 30 , 5,(30, 150))
+rаcketr = Player('racket.png',  175 , 640, 5,(30, 150))
 
 clock = time.Clock()
 FPS = 60
@@ -53,6 +53,9 @@ while run:
             run = False
     window.fill((200, 255, 255))
     if not finish:
-        pass
+        rаcketl.reset()
+        rаcketr.reset()
+        rаcketl.update_l()
+        rаcketr.update_r()
     display.update() 
     clock.tick(60)
