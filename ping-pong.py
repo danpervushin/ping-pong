@@ -52,16 +52,25 @@ my_font = font.SysFont("Arial", 35)
 win = my_font.render("Вы победили!", True, (255, 255, 0))
 lose_lost = my_font.render("Вы пропустили слишком много тарелок!", True, (255, 0, 0))
 lose_walls = my_font.render("Вас сбили!", True, (255, 0, 0))
+speed_x =3
+speed_y = 3
+
 while run:
     for e  in event.get():
         if e.type == QUIT:
             run = False
     window.fill((200, 255, 255))
     if not finish:
+        tenis_ball.rect.x+=speed_x
+        tenis_ball.rect.y+=speed_y
         tenis_ball.reset()
         rаcketl.reset()
         rаcketr.reset()
         rаcketl.update_l()
         rаcketr.update_r()
+        if tenis_ball.rect.y < 0 or tenis_ball.rect.y > 450: 
+            speed_y *= -1
+        if tenis_ball.rect.colliderect(rаcketl) or tenis_ball.rect.colliderect(rаcketr):
+            speed_x *= -1
     display.update() 
     clock.tick(60)
