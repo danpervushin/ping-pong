@@ -49,7 +49,9 @@ finish = False
 
 font.init()
 my_font = font.SysFont("Arial", 35)
-win = my_font.render("Вы победили!", True, (255, 255, 0))
+winl = my_font.render("Победила Левая ракетка!", True, (255, 255, 0))
+
+winr = my_font.render("Победила Правая ракетка!", True, (255, 255, 0))
 lose_lost = my_font.render("Вы пропустили слишком много тарелок!", True, (255, 0, 0))
 lose_walls = my_font.render("Вас сбили!", True, (255, 0, 0))
 speed_x =3
@@ -72,5 +74,11 @@ while run:
             speed_y *= -1
         if tenis_ball.rect.colliderect(rаcketl) or tenis_ball.rect.colliderect(rаcketr):
             speed_x *= -1
+    if tenis_ball.rect.x > 700:
+        finish = True
+        window.blit(winl, (200, 250))
+    if tenis_ball.rect.x < 0:
+        finish = True
+        window.blit(winr, (200, 250))
     display.update() 
     clock.tick(60)
